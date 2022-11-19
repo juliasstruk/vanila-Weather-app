@@ -10,7 +10,9 @@
 </head>
 <body>
     <div class="container">
+         <div class="weather-app-wrapper">
         <div class="weather-app">
+            <div class="overview">
     <h1> New Yourk </h1>
     <ul>
         <li>
@@ -22,9 +24,15 @@
     </ul>
     <div class="row">
         <div class="col-6">
-            <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png" alt="Clear">
-  12°С | °F      
+            <div class="clearfix weather-temperature">
+            <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png" alt="Clear"
+            class="float-left"/>
+            <div class="floet left">
+  <strong>12</strong>
+ <span class="units">°С | <a href="#"> °F</a></span>     
+</div>
     </div>
+</div>
     <div class="col-6">
         <ul>
             <li>
@@ -39,11 +47,15 @@
         </ul>
 
     </div>
-    <small>
+    </div>
+   
+</div>
+</div>
+     <small>
     <a href="https://github.com/juliasstruk/vanila-Weather-app">Open-source code </a>  by Yuliia Struk
 </small>
-    </div>
-<div>
+</div>
+</div>
     <script src="src/app.js"></script>
 </body>
 </html>
