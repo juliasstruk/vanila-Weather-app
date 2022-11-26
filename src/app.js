@@ -22,6 +22,34 @@ function formatDate(timestamp) {
     return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast () {
+let forecastElement = document.querySelector ("#forecast");
+
+let days = ["Thu", "Fri", "Sat", "Sun"];
+
+let forecastHTML = `<div class="row"`;
+days.forEach(function(day) {
+forecastHTML = 
+forecastHTML + 
+`
+<div class="col-2">
+    <div class="weather-forecast-date">${day}</div>
+    <img 
+    src="http://openweathermap.org/img/wn/01d@2x.png" alt="" width="42"/>
+    <div class="weather-forecast-temperature">
+ <span class="weather-forecast-temperatute-max"> 18° </span>
+ <span class="weather-forecast-temperatute-min"> 12° </span>
+</div>
+</div>
+`;
+});
+
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+console.log (forecastHTML);
+}
+
+
 
 function displayTemperature(response){
     console.log(response.data);
@@ -32,6 +60,8 @@ let humidityElement = document.querySelector("#humidity");
 let windElement = document.querySelector("#wind");
 let dateElement = document.querySelector("#date");
 let iconElement = document.querySelector("#icon");
+
+
 
 celsiusTemperature = response.data.main.temp;
 
@@ -51,36 +81,6 @@ iconElement.setAttribute (
 }
 
 
-
-function displayFahrenheitTemperature (event){
-event.preventDefault();
-let temperatureElement = document.querySelector ("#temperature");
-celciusLink.classList.remove ("active");
-fahrenheitlink.classList.add ("active");
-let fahrenheitTemperature = (celsiusTemperature * 9/ 5) +32;
-temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsiusTemperature (event) {
-event.preventDefault();
-celciusLink.classList.add ("active");
-fahrenheitlink.classList.remove ("active");
-let temperatureElement = document.querySelector ("#temperature");
-temperatureElement.innerHTML = Math.round(celsiusTemperature);
-
-}
-
-let celsiusTemperature = null;
-
-
-
-let fahrenheitlink = document.querySelector ("#fahrenheit-link");
-fahrenheitlink.addEventListener("click", displayFahrenheitTemperature);
-
-
-let celciusLink = document.querySelector ("#celcius-link");
-celciusLink.addEventListener("click", displayCelsiusTemperature);
-
 function search(city) {
 let apiKey = "5e5c2757f7c28e9aed7d744b591dfdeb";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -93,7 +93,41 @@ let cityInputElement = document.querySelector("#city-input");
 search(cityInputElement.value);
 }
 
+function displayFahrenheitTemperature (event){
+event.preventDefault();
+let temperatureElement = document.querySelector ("#temperature");
+
+celciusLink.classList.remove ("active");
+fahrenheitlink.classList.add ("active");
+let fahrenheitTemperature = (celsiusTemperature * 9/ 5) +32;
+temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+
+function displayCelsiusTemperature (event) {
+event.preventDefault();
+celciusLink.classList.add ("active");
+fahrenheitlink.classList.remove ("active");
+let temperatureElement = document.querySelector ("#temperature");
+temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+}
+
+
+
+let celsiusTemperature = null;
+
 let form = document.querySelector ("#search-form");
 form.addEventListener ("submit", handleSubmit);
 
+let fahrenheitlink = document.querySelector ("#fahrenheit-link");
+fahrenheitlink.addEventListener("click", displayFahrenheitTemperature);
+
+
+let celciusLink = document.querySelector ("#celcius-link");
+celciusLink.addEventListener("click", displayCelsiusTemperature);
+
+
+
 search("New York");
+displayForecast ();
