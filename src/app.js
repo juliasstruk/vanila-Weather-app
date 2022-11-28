@@ -47,7 +47,7 @@ forecastElement.innerHTML = forecastHTML;
 
 function getForecast (coordinates) {
     console.log(coordinates);
-    let apiKey = "5e5c2757f7c28e9aed7d744b591dfdeb";
+    let apiKey = "0f7a2ed93ee0a1cbffbc196cdf684f80";
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
 
     axios.get(apiUrl).then(displayForecast);
@@ -81,7 +81,7 @@ iconElement.setAttribute (
 
 
 function search(city) {
-let apiKey = "5e5c2757f7c28e9aed7d744b591dfdeb";
+let apiKey = "0f7a2ed93ee0a1cbffbc196cdf684f80";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(displayTemperature);
 }
